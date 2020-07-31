@@ -60,6 +60,7 @@ function ReservationNavigatorScreen() {
                             name='menu' 
                             size={24}
                             color='white'
+                            iconStyle={{marginLeft: 10}}
                             onPress={() => 
                                 navigation.toggleDrawer()}
                         />
@@ -93,6 +94,7 @@ function FavoriteNavigatorScreen() {
                             name='menu' 
                             size={24}
                             color='white'
+                            iconStyle={{marginLeft: 10}}
                             onPress={() => 
                                 navigation.toggleDrawer()}
                         />
@@ -126,6 +128,7 @@ function ContactNavigatorScreen() {
                             name='menu' 
                             size={24}
                             color='white'
+                            iconStyle={{marginLeft: 10}}
                             onPress={() => 
                                 navigation.toggleDrawer()}
                         />
@@ -159,6 +162,7 @@ function AboutNavigatorScreen() {
                             name='menu' 
                             size={24}
                             color='white'
+                            iconStyle={{marginLeft: 10}}
                             onPress={() => 
                                 navigation.toggleDrawer()}
                         />
@@ -192,6 +196,7 @@ function HomeNavigatorScreen() {
                             name='menu' 
                             size={24}
                             color='white'
+                            iconStyle={{marginLeft: 10}}
                             onPress={() => 
                                 navigation.toggleDrawer()}
                         />
@@ -226,6 +231,7 @@ function MenuNavigatorScreen() {
                             name='menu' 
                             size={24}
                             color='white'
+                            iconStyle={{marginLeft: 10}}
                             onPress={() => 
                                 navigation.toggleDrawer()}
                         />
