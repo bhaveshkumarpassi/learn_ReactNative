@@ -12,6 +12,7 @@ import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Reservation from './ReservationComponent';
+import Favorites from './FavoriteComponent';
 
 const mapStateToProps = state => {
     return {
@@ -35,6 +36,7 @@ const ContactNavigator = createStackNavigator();
 const AboutNavigator = createStackNavigator();
 const ReservationNavigator = createStackNavigator();
 const MainNavigator = createDrawerNavigator();
+const FavoriteNavigator = createStackNavigator();
 
 function ReservationNavigatorScreen() {
     return(
@@ -49,7 +51,7 @@ function ReservationNavigatorScreen() {
                 }
             }}
         >
-            <ContactNavigator.Screen
+            <ReservationNavigator.Screen
                 name="Reserve Your Table"
                 component={Reservation}
                 options={{headerTitle: "Reserve Your Table"},({navigation}) => ({
@@ -66,6 +68,39 @@ function ReservationNavigatorScreen() {
                 })}
             />
         </ReservationNavigator.Navigator>
+    );
+}
+
+function FavoriteNavigatorScreen() {
+    return(
+        <FavoriteNavigator.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: "#512DA8"
+                },
+                headerTintColor: "#fff",
+                headerTitleStyle: {
+                    color: "#fff"            
+                }
+            }}
+        >
+            <FavoriteNavigator.Screen
+                name="My Favorites"
+                component={Favorites}
+                options={{headerTitle: "My Favorites"},({navigation}) => ({
+                    headerLeft: () => (
+                        <Icon 
+                            name='menu' 
+                            size={24}
+                            color='white'
+                            onPress={() => 
+                                navigation.toggleDrawer()}
+                        />
+                    )
+                
+                })}
+            />
+        </FavoriteNavigator.Navigator>
     );
 }
 
@@ -115,7 +150,7 @@ function AboutNavigatorScreen() {
                 }
             }}
         >
-            <ContactNavigator.Screen
+            <AboutNavigator.Screen
                 name="About Us"
                 component={About}
                 options={{headerTitle: "About Us"},({navigation}) => ({
@@ -274,6 +309,18 @@ function MainNavigatorScreen() {
                 options={{headerTitle: "Contact Us"},{drawerIcon: ({ tintColor }) => (
                     <Icon
                       name='address-card'
+                      type='font-awesome'            
+                      size={22}
+                      color={tintColor}
+                    />
+                )}}
+            />
+            <MainNavigator.Screen
+                name="My Favorites"
+                component={FavoriteNavigatorScreen}
+                options={{headerTitle: "My Favorites"},{drawerIcon: ({ tintColor }) => (
+                    <Icon
+                      name='heart'
                       type='font-awesome'            
                       size={22}
                       color={tintColor}
