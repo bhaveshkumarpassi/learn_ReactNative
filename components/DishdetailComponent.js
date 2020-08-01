@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
 import { favorites } from '../redux/favorites';
-import { Rating, AirbnbRating} from 'react-native-ratings';
+import {AirbnbRating, Rating} from 'react-native-ratings';
 import { color, Value } from 'react-native-reanimated';
+import * as Animatable from 'react-native-animatable';
 
 
 const mapStateToProps = state => {
@@ -29,6 +30,7 @@ function RenderDish(props) {
     
         if (dish != null) {
             return(
+                <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
                 <Card
                 featuredTitle={dish.name}
                 image={{ uri: baseUrl + dish.image}}>
@@ -54,6 +56,7 @@ function RenderDish(props) {
                     />
                     </View>
                 </Card>
+                </Animatable.View>
             );
         }
         else {
@@ -77,6 +80,7 @@ function RenderComments(props) {
     };
     
     return (
+        <Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
         <Card title='Comments' >
         <FlatList 
             data={comments}
@@ -84,6 +88,7 @@ function RenderComments(props) {
             keyExtractor={item => item.id.toString()}
             />
         </Card>
+        </Animatable.View>
     );
 }
 
@@ -138,14 +143,14 @@ class Dishdetail extends Component {
                 onDismiss={() => this.toggleModal()}
                 onRequestClose={() => this.toggleModal()}
             >
-            <AirbnbRating
-                count={5}
-                reviews={['Terrible : 1/5', 'Bad : 2/5', 'Okay : 3/5', 'Good : 4/5', 'Great : 5/5']}
-                defaultRating={5}
-                size={40}
-                showRating
-                onFinishRating={(rating) => this.setState({rating: rating})}
+            <Rating 
+                    ratingCount={5}
+                    imageSize={40}
+                    startingValue={0}
+                    showRating
+                    onFinishRating={(rating) => this.setState({rating: rating})}
             />
+            <View style={{marginLeft: 20, marginRight: 20, marginTop: 20}}>
             <Input
                 placeholder='Author'
                 leftIcon={<Icon
@@ -154,6 +159,8 @@ class Dishdetail extends Component {
                 />}
                 onChangeText={value => this.setState({ author: value })}
             />
+            </View>
+            <View style={{marginLeft: 20, marginRight: 20, marginTop: 20}}>
             <Input
                 placeholder='Comment'
                 leftIcon={<Icon
@@ -162,13 +169,14 @@ class Dishdetail extends Component {
                 />}
                 onChangeText={value => this.setState({ comment: value })}
             />
-            <View style={{margin: 10}}>
+            </View>
+            <View style={{margin: 20}}>
             <Button title="Submit"
                     color="#512DA8"
                     onPress={() => this.handleComment(dishId,this.state.rating,this.state.author,this.state.comment)}
             />
             </View>
-            <View  style={{margin: 10}}>
+            <View  style={{margin: 20}}>
             <Button title="Cancel"
                     color="grey"
                     onPress={() => this.toggleModal()}

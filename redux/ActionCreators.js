@@ -174,6 +174,22 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
         comment: comment
     };
     newComment.date = new Date().toISOString();
+
+    setTimeout(
+        () => {
+            dispatch(addComment(newComment));
+        }, 2000
+    );
+}
+/*export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+
+    const newComment = {
+        dishId: dishId,
+        rating: rating,
+        author: author,
+        comment: comment
+    };
+    newComment.date = new Date().toISOString();
     
     return fetch(baseUrl + 'comments', {
         method: "POST",
@@ -200,4 +216,4 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
         dispatch(addComment(response));
     }, 2000), console.log(response)})
     .catch(error =>  { console.log('post comments', error.message); alert('Your comment could not be posted\nError: '+error.message); });
-};
+};*/
