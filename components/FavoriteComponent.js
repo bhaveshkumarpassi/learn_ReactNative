@@ -21,12 +21,7 @@ const mapdispatchtoprops = disptach => ({
 
 class Favorites extends Component {
 
-
-    render() {
-        
-        const renderMenuItem = ({item, index}) => {
-            
-            const rightDelete = [{
+    /*   const rightDelete = [{
                 text: 'Delete',
                 type: 'Delete',
                 onPress: () => {
@@ -48,21 +43,46 @@ class Favorites extends Component {
                     );
                 },
                 backgroundColor: 'red'
-                
-            }];
+                <Swipeout right={rightDelete} autoClose={true}>  
+                </Swipeout>
+            }];*/
+
+    render() {
+        
+        const renderMenuItem = ({item, index}) => { 
+
+            const handleLongPress = () => {
+                Alert.alert(
+                    'Delete Favorite?',
+                    'Are you sure you wish to delete the favorite dish ' + item.name + '?',
+                    [
+                        { 
+                            text: 'Cancel', 
+                            onPress: () => console.log(item.name + 'Not Deleted'),
+                            style: ' cancel'
+                        },
+                        {
+                            text: 'OK',
+                            onPress: () => this.props.deleteFavorite(item.id)
+                        }
+                    ],
+                    { cancelable: false }
+                );
+            }
 
             return (
                 <Animatable.View animation="fadeInRightBig" duration={2000} >  
-                <Swipeout right={rightDelete} autoClose={true}>        
+                      
                 <ListItem
                     key={index}
                     title={item.name}
                     subtitle={item.description}
                     hideChevron={true}
+                    onLongPress= {handleLongPress}
                     onPress={() => this.props.navigation.navigate('Dishdetail', { dishId: item.id })}
                     leftAvatar={{ source: {uri: baseUrl + item.image}}}
                 />
-                </Swipeout>
+                
                 </Animatable.View>
             );
         };

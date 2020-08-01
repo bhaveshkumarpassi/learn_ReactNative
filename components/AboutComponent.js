@@ -1,5 +1,5 @@
 import React, {component, Component} from 'react';
-import { ScrollView, View, Text, FlatList, SafeAreaView} from 'react-native';
+import { ScrollView, View, Text, FlatList, SafeAreaView, VirtualizedList} from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -77,7 +77,7 @@ class About extends Component {
                     <History />
                     <Card
                         title='Corporate Leadership'>
-                    <FlatList 
+                    <FlatList
                         data={this.props.leaders.leaders}
                         renderItem={renderLeaderItem}
                         keyExtractor={item => item.id.toString()}
