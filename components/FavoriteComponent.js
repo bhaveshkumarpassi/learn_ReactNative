@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, View, Text, Alert } from 'react-native';
+import { FlatList, View, Text, Alert, PanResponder } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Loading } from './LoadingComponent';
@@ -48,11 +48,12 @@ class Favorites extends Component {
                     );
                 },
                 backgroundColor: 'red'
+                
             }];
 
             return (
-                <Animatable.View animation="fadeInRightBig" duration={2000}>  
-                <Swipeout right={rightDelete} autoClose={true}>              
+                <Animatable.View animation="fadeInRightBig" duration={2000} >  
+                <Swipeout right={rightDelete} autoClose={true}>        
                 <ListItem
                     key={index}
                     title={item.name}
