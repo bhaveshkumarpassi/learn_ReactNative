@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, ScrollView, FlatList, Modal, Button, PanResponder, Alert} from 'react-native';
+import { Text, View, ScrollView, FlatList, Modal, Button, PanResponder, Alert, delay} from 'react-native';
 import { Card, Icon , Input} from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -37,6 +37,13 @@ function RenderDish(props) {
             return false;
     }
 
+    const recognizeAddCommentGesture = ({moveX, moveY, dx, dy}) => {
+        if( dx > 200 )
+            return true;
+        else 
+            return false;
+    }
+
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: (e, gestureState) => {
             return true;
@@ -59,7 +66,11 @@ function RenderDish(props) {
                     ],
                     { cancelable: false }
                 );
+            
+            else if(recognizeAddCommentGesture(gestureState)) {
 
+                props.onAddComment();
+            }
             return true;
         }
     })
@@ -183,7 +194,7 @@ class Dishdetail extends Component {
             <Rating 
                     ratingCount={5}
                     imageSize={40}
-                    startingValue={0}
+                    startingValue={5}
                     showRating
                     onFinishRating={(rating) => this.setState({rating: rating})}
             />
