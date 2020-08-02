@@ -19,11 +19,13 @@ class Menu extends Component {
         const renderMenuItem = ({item, index}) => {
 
             return (
-                <Animatable.View animation="fadeInRightBig" duration={2000}>   
+                <Animatable.View animation="fadeInRightBig" duration={2000} >   
                 <Tile
                     key={index}
                     title={item.name}
+                    titleStyle={{color: 'black'}}
                     caption={item.description}
+                    captionStyle={{color: 'black', fontWeight: 'bold'}}
                     featured
                     onPress={() => this.props.navigation.navigate('Dishdetail', { dishId: item.id })}
                     imageSrc={{ uri: baseUrl + item.image}}
