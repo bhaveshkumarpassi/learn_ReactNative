@@ -206,6 +206,7 @@ class Dishdetail extends Component {
                     type='font-awesome'
                 />}
                 onChangeText={value => this.setState({ author: value })}
+                value={this.state.author}
             />
             </View>
             <View style={{marginLeft: 20, marginRight: 20, marginTop: 20}}>
@@ -216,6 +217,7 @@ class Dishdetail extends Component {
                     type='font-awesome'
                 />}
                 onChangeText={value => this.setState({ comment: value })}
+                value={this.state.comment}
             />
             </View>
             <View style={{margin: 20}}>
